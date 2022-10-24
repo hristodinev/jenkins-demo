@@ -1,5 +1,4 @@
 #!/bin/bash
+echo "Create jenkins user"
 
-echo "Add user jenkins"
-sudo useradd jenkins
-sudo usermod -aG docker jenkins
+sudo echo 'jenkins:vagrant' | sudo chpasswd

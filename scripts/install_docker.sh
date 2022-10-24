@@ -25,6 +25,5 @@ chmod +x /home/vagrant/.docker/cli-plugins/docker-compose
 
 echo "Add user jenkins and change his password"
 
-sudo useradd jenkins
-sudo passwd jenkins
+sudo adduser jenkins
 sudo usermod -aG docker jenkins
