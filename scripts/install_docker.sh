@@ -21,3 +21,9 @@ echo "* Install Docker Compose"
 mkdir -p /home/vagrant/.docker/cli-plugins/
 curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o /home/vagrant/.docker/cli-plugins/docker-compose
 chmod +x /home/vagrant/.docker/cli-plugins/docker-compose
+
+
+echo "Add user jenkins and change his password"
+
+sudo useradd jenkins
+sudo passwd jenkins
