@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+    
+  config.ssh.insert_key = false
+
+  config.vm.define "jenkins" do |jenkins|
+    jenkins.vm.box="shekeriev/debian-11"
+    jenkins.vm.hostname = "jenkins.do1.lab"
+    jenkins.vm.provider :virtualbox do |vb|
+      vb.memory = "2048"
+      vb.cpus = "2"
+    end
+    jenkins.vm.network "private_network", ip: "192.168.99.101"
+    jenkins.vm.network "forwarded_port", guest: 8080, host: 8080
+    jenkins.vm.provision "shell", path: "scripts/add_hosts.sh"
+	  jenkins.vm.provision "shell", path: "scripts/install_jenkins.sh"
+  end
+  
+  config.vm.define "docker" do |docker|
+    docker.vm.box = "shekeriev/debian-11"
+    docker.vm.hostname = "docker.do1.lab"
+    docker.vm.provider :virtualbox do |vb|
+      vb.memory = "2048"
+      vb.cpus = "2"
+    end
+    docker.vm.network "private_network", ip: "192.168.99.102"
+    docker.vm.provision "shell", path: "scripts/add_hosts.sh"
+	  docker.vm.provision "shell", path: "scripts/install_docker.sh"
+  end
+end    
