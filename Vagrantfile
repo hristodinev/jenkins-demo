@@ -16,6 +16,8 @@ Vagrant.configure(2) do |config|
     jenkins.vm.network "forwarded_port", guest: 8080, host: 8080
     jenkins.vm.provision "shell", path: "scripts/add_hosts.sh"
 	  jenkins.vm.provision "shell", path: "scripts/install_jenkins.sh"
+    jenkins.vm.provision "shell", path: "scripts/jenkinsvm.sh"
+
   end
   
   config.vm.define "docker" do |docker|
@@ -28,5 +30,6 @@ Vagrant.configure(2) do |config|
     docker.vm.network "private_network", ip: "192.168.99.102"
     docker.vm.provision "shell", path: "scripts/add_hosts.sh"
 	  docker.vm.provision "shell", path: "scripts/install_docker.sh"
+    docker.vm.provision "shell", path: "scripts/dockervm.sh"
   end
 end    

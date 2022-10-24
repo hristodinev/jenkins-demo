@@ -27,3 +27,4 @@ echo "Add user jenkins and change his password"
 
 sudo useradd jenkins
 sudo passwd jenkins
+sudo usermod -aG docker jenkins
